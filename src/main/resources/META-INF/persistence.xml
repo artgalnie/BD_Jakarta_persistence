@@ -12,7 +12,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Entidades -->
-        <class>org.example.bd_jakarta_persistence.HelloApplication</class>
+        <class>org.campos_bd.Empleado</class>
 
         <properties>
             <!-- Conexión a Base de Datos - FORMATO NUEVO -->
