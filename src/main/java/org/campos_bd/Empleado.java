@@ -1,6 +1,8 @@
 package org.campos_bd;
 
 import jakarta.persistence.*;
+
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.*;
 
@@ -9,9 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "Empleado")
+@Table(name = "empleados")
 public class Empleado implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -24,9 +27,9 @@ public class Empleado implements Serializable {
     @Column(name = "apellido1", nullable = false, length = 100)
     private String apellido;
 
-    @Column(name = "apellido2")
+    @Column(name = "apellido2", length = 100)
     private String apellido2;
 
-    @Column(name = "cargo", nullable = false, length = 100)
-    private String cargo;
+    @Column(name = "cargo", nullable = false)
+    private Integer cargo;
 }
