@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Set;
+
 import lombok.*;
 
 @Data
@@ -13,9 +16,6 @@ import lombok.*;
 @Entity
 @Table(name = "empleados")
 public class Empleado implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,13 @@ public class Empleado implements Serializable {
     @Column(name = "apellido2", length = 100)
     private String apellido2;
 
-    @Column(name = "cargo", nullable = false)
-    private Integer cargo;
+    @Column(name = "salario_base", nullable = false)
+    private Double salario_base;
+
+    @OneToMany(
+            mappedBy = "elEmpleado",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
+    private Set<Cargo> losCargos;
 }
