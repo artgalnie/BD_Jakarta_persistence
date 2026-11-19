@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import lombok.*;
+import org.utils.Utiles;
 
 @Data
 @AllArgsConstructor
@@ -13,9 +14,9 @@ import lombok.*;
 @Entity
 @Table(name = "cargos")
 @NamedQueries({
-//        @NamedQuery(name = "Cargo.findAll", query = "SELECT 'nombre' FROM cargo")
+        @NamedQuery(name = "Cargo.findAll", query = "SELECT nombre FROM cargo")
 })
-public class Cargo implements Serializable {
+public class Cargo implements Serializable, Funcionalidades {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +40,16 @@ public class Cargo implements Serializable {
             foreignKey = @ForeignKey(name = "FK_cargo_empleado")
     )
     private Empleado elEmpleado;
+
+    @Override
+    public void anyadir() {
+        this.setNombre(Utiles.obtenerString("Ingrese el nombre del cargo:"));
+        this.setDescripcion(Utiles.obtenerString("Ingrese la descripición del cargo:"));
+        this.setSalario_bonus(
+                // He visto que Math.ceil es como Math.round pero hacia arriba. Lo he hecho así porque técnica y legalmente es así.
+                (double) Math.ceil(
+                        Utiles.obtenerDouble("Ingrese el bonus de salario que supone el cargo: (Ejemplo: 1000.12) (0 si no supone ninguno)")
+                )
+        );
+    }
 }

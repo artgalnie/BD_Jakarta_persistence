@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import lombok.*;
+import org.utils.Utiles;
 
 @Data
 @AllArgsConstructor
@@ -14,9 +15,9 @@ import lombok.*;
 @Entity
 @Table(name = "empleados")
 @NamedQueries({
-//        @NamedQuery(name = "Empleado.findAll", query = "SELECT 'nombre' FROM empleado"),
+        @NamedQuery(name = "Empleado.findAll", query = "SELECT nombre FROM empleado")
 })
-public class Empleado implements Serializable {
+public class Empleado implements Serializable, Funcionalidades {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,7 @@ public class Empleado implements Serializable {
     private String nombre;
 
     @Column(name = "apellido1", nullable = false, length = 100)
-    private String apellido;
+    private String apellido1;
 
     @Column(name = "apellido2", length = 100)
     private String apellido2;
@@ -49,4 +50,17 @@ public class Empleado implements Serializable {
             foreignKey = @ForeignKey(name = "FK_oficina_empleado")
     )
     private Oficina oficina;
+
+    @Override
+    public void anyadir() {
+        this.setNombre(Utiles.obtenerString("Ingrese el nombre del empleado:"));
+        this.setApellido1(Utiles.obtenerString("Ingrese el primer apellido del empleado:"));
+        this.setApellido2(Utiles.obtenerString("Ingrese el segundo apellido del empleado: (si no tiene presione Enter)"));
+        this.setSalario_base(
+                // He visto que Math.ceil es como Math.round pero hacia arriba. Lo he hecho así porque técnica y legalmente es así.
+                (double) Math.ceil(
+                    Utiles.obtenerDouble("Ingrese el salario del empleado: (Ejemplo: 1000.00)")
+                )
+        );
+    }
 }
