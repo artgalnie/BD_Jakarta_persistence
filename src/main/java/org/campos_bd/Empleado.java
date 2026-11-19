@@ -20,7 +20,8 @@ public class Empleado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idEmpleado;
+    @Column(name = "id_empleado", nullable = false, length = 50)
+    private Integer id_empleado;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
