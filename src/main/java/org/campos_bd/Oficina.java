@@ -17,7 +17,7 @@ import org.utils.Utiles;
 @Table(name = "oficinas")
 
 @NamedQueries({
-        @NamedQuery(name = "Oficina.findAll", query = "SELECT id_oficina, tipo FROM Oficina")
+        @NamedQuery(name = "Oficina.findAll", query = "SELECT a FROM Oficina a")
 })
 
 public class Oficina implements Serializable, Funcionalidades {
