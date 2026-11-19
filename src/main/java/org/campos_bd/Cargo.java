@@ -12,6 +12,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "cargos")
+@NamedQueries({
+//        @NamedQuery(name = "Cargo.findAll", query = "SELECT 'nombre' FROM cargo")
+})
 public class Cargo implements Serializable {
 
     @Id
@@ -27,7 +30,10 @@ public class Cargo implements Serializable {
     @Column(name = "salario_bonus")
     private Double salario_bonus;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(
             name = "id_empleado",
             foreignKey = @ForeignKey(name = "FK_cargo_empleado")

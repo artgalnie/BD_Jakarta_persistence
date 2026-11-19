@@ -13,20 +13,22 @@
 
         <!-- Entidades -->
         <class>org.campos_bd.Empleado</class>
+        <class>org.campos_bd.Cargo</class>
+        <class>org.campos_bd.Oficina</class>
 
         <properties>
             <!-- Conexión a Base de Datos - FORMATO NUEVO -->
             <property name="jakarta.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3308/bd_empresa_sl?createDatabaseIfNotExist=true"/>
+                      value="jdbc:mysql://localhost:3308/bd_empresa_sl"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
             <!-- Configuración específica de Hibernate 7 -->
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
 

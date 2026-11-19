@@ -2,9 +2,7 @@ package org.campos_bd;
 
 import jakarta.persistence.*;
 
-import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Set;
 
 import lombok.*;
@@ -15,13 +13,16 @@ import lombok.*;
 
 @Entity
 @Table(name = "empleados")
+@NamedQueries({
+//        @NamedQuery(name = "Empleado.findAll", query = "SELECT 'nombre' FROM empleado"),
+})
 public class Empleado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEmpleado;
 
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     @Column(name = "apellido1", nullable = false, length = 100)
@@ -39,4 +40,12 @@ public class Empleado implements Serializable {
             fetch = FetchType.LAZY
     )
     private Set<Cargo> losCargos;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "id_empleado",
+            referencedColumnName = "id_empleado",
+            unique = true,
+            foreignKey = @ForeignKey(name = "FK_oficina_empleado")
+    )
+    private Oficina oficina;
 }
