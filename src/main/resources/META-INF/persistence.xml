@@ -13,7 +13,7 @@
 
         <!-- Entidades -->
         <class>org.campos_bd.Empleado</class>
-        <class>org.campos_bd.Cargo</class>
+        <class>org.campos_bd.Departamento</class>
         <class>org.campos_bd.Oficina</class>
 
         <properties>
@@ -21,7 +21,7 @@
             <property name="jakarta.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3308/bd_empresa_sl"/>
+                      value="jdbc:mysql://localhost:3306/bd_empresa_sl"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 
@@ -29,8 +29,8 @@
             <property name="hibernate.dialect"
                       value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
 
             <!-- NUEVAS PROPIEDADES HIBERNATE 7 -->
             <property name="hibernate.connection.provider_disables_autocommit" value="true"/>

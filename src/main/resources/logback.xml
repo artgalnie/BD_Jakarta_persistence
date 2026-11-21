@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -6,7 +8,8 @@
         </encoder>
     </appender>
 
-    <!-- Logs específicos para Hibernate 7 -->
+    <!- Logs específicos para Hibernate 7 -->
+<!--
     <logger name="org.hibernate" level="INFO"/>
     <logger name="org.hibernate.SQL" level="DEBUG"/>
     <logger name="org.hibernate.orm.jdbc.bind" level="TRACE"/>
@@ -15,4 +18,9 @@
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
     </root>
+</configuration>
+-->
+
+<configuration>
+    <root level="OFF"/>
 </configuration>

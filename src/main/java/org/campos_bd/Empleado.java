@@ -14,9 +14,6 @@ import org.utils.Utiles;
 
 @Entity
 @Table(name = "empleados")
-@NamedQueries({
-        @NamedQuery(name = "Empleado.findAll", query = "SELECT nombre FROM empleado")
-})
 public class Empleado implements Serializable, Funcionalidades {
 
     @Id
@@ -36,16 +33,20 @@ public class Empleado implements Serializable, Funcionalidades {
     @Column(name = "salario_base", nullable = false)
     private Double salario_base;
 
-    @OneToMany(
-            mappedBy = "elEmpleado",
+    @ManyToOne(
             cascade = CascadeType.PERSIST,
             fetch = FetchType.LAZY
     )
-    private Set<Cargo> losCargos;
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
-            name = "id_empleado",
-            referencedColumnName = "id_empleado",
+            name = "departamento",
+            unique = true,
+            foreignKey = @ForeignKey(name = "FK_departamento_empleado")
+    )
+    private Departamento departamento;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "oficina",
+            nullable = false,
             unique = true,
             foreignKey = @ForeignKey(name = "FK_oficina_empleado")
     )
@@ -62,5 +63,10 @@ public class Empleado implements Serializable, Funcionalidades {
                     Utiles.obtenerDouble("Ingrese el salario del empleado: (Ejemplo: 1000.00)")
                 )
         );
+    }
+
+    @Override
+    public void anyadir_r(EntityManager em) {
+
     }
 }
